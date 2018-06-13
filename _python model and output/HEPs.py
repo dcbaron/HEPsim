@@ -53,7 +53,7 @@ shortTimeStep = Fraction(1,360) #     years, for simplicity.
 
 agingRate = 0.02 # annual depreciation due to aging
 
-sim = None#True
+sim = None #True
 HomeSalesOn=False
 trackOne=True
 stopAfterPrimary=False
@@ -110,9 +110,10 @@ from csv import DictWriter as dictWriter, DictReader as dictReader
 from os import chdir, mkdir
 err = RuntimeError
 
-gauss99 = 2.326347874 # 99th percentile
+gauss99 = 2.326347874 # 99th percentile of a Gaussian r.v.
 sellDateLambda = 1./13 * log(2) # Parameter of the exponential
   # distribution governing homeowner turnover.
+  #todo: put home sales half-life in settings
 
 from time import ctime as __now__
 now = lambda: __now__().replace(':','..')
@@ -146,7 +147,7 @@ class dataClass:
 index = dataClass(last={})
 
 # The discount rate.
-riskFree = dataClass(rate=log(1.03));
+riskFree = dataClass(rate=log(1.03)); #todo: put risk-free rate in settings
 riskFree.Rate=riskFree.rate
 
 # Auction length, not yet implemented #TODO
@@ -277,7 +278,7 @@ class thingClass:
     
     def __str__(self):
     # Gives each Thing a name for it to print, eg "HEP 28".
-    # To do: make it easy to print all relevant data,
+    # Todo: make it easy to print all relevant data,
     # e.g. "HEP 28-- House: 9, Claim: 2.1%, Owner: Bob."
         name = str(self.__class__).split('.')[1].split('lass')[0][:-1]
         name = name + " " + str(self.id)
