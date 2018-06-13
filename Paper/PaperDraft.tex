@@ -1,0 +1,484 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Journal Article
+% LaTeX Template
+% Version 1.3 (9/9/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[twoside]{article}
+
+\usepackage{lipsum} % Package to generate dummy text throughout this template
+
+\usepackage[sc]{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\linespread{1.05} % Line spacing - Palatino needs more space between lines
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+
+\usepackage[a4paper, top=32mm,bottom=32mm, left=35mm,right=35mm,columnsep=20pt]{geometry} % Document margins
+\usepackage{multicol} % Used for the two-column layout of the document
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+\usepackage{hyperref} % For hyperlinks in the PDF
+
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
+
+\usepackage{abstract} % Allows abstract customization
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+%\newcommand{\P}{PRIMARQ}
+
+\usepackage{titlesec} % Allows customization of titles
+%\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+%\renewcommand\thesubsection{\Roman{subsection}} % Roman numerals for subsections
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Change the look of the section titles
+\usepackage{enumerate}
+\usepackage{graphicx}
+
+
+\usepackage{fancyhdr} % Headers and footers
+\pagestyle{fancy} % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+\fancyhead[C]{EUR Financial Mathematics $\bullet$ Fall 2013 $\bullet$ Budapest Semesters in Mathematics} % Custom header text
+\fancyfoot[RO,LE]{\thepage} % Custom footer text
+
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{%frame=tb,
+	  language=Python,
+%	  aboveskip=3mm,
+%	  belowskip=3mm,
+	  showstringspaces=false,
+%	  columns=flexible,
+	  basicstyle={\ttfamily},
+%	  numbers=none,
+%	  numberstyle=\tiny\color{gray},
+	  keywordstyle=\color{blue},
+	  commentstyle=\color{dkgreen},
+	  stringstyle=\color{mauve},
+%	  breaklines=true,
+%	  breakatwhitespace=true
+%	  tabsize=3
+}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{Investigations in Home Equity Position Markets}} % Article title
+
+\author{
+\large
+\textsc{Dan Baron, Emily Searle-White}%\thanks{A thank you or further information}
+\\[2mm] % Your name
+\normalsize Western Washington University, Mills College \\ % Your institution
+\normalsize {d.c.baron@gmail.com, esearlewhite@gmail.com} % Your email address
+%\href{mailto:john@smith.com}
+\vspace{-5mm}
+}
+\date{}
+
+%----------------------------------------------------------------------------------------
+%	MATH MACROS
+%----------------------------------------------------------------------------------------
+\usepackage{amsmath}
+
+\newcommand\newc\newcommand
+\newc\dt{\mathrm{d}t}
+\newc{\E}{\mathbb{E}}
+%\newenvironment{Dan}[0]{
+	\renewcommand{\P}{\mathbb{P}}
+	\newc{\V}{V_{\mathrm{now}}}
+	\newc{\intdt}[1]{\int_0^\infty#1\ \dt}
+	\newc\ali[1]{\begin{align*}#1\end{align*}}
+%	}{}
+
+\usepackage{color}
+\newcommand{\hilight}[1]{\colorbox{yellow}{#1}}
+
+\begin{document}
+
+\maketitle % Insert title
+
+\thispagestyle{fancy} % All pages have headers and footers
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+\begin{abstract}
+
+\noindent Description here. %\lipsum[1] % Dummy abstract text
+
+\end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\begin{multicols}{2} % Two-column layout throughout the main article text
+
+\tableofcontents
+\pagebreak
+
+\section{Introduction}
+
+%As participants in the Budapest Semesters in Mathematics program in Fall 2013, Emily proposed an Elective Undergraduate Research project based on an internship during the preceeding summer. The internship was with a startup company called PRIMARQ in San Francisco.
+
+In response to an internship with a company that hoped to create a market for the trade of equity positions in owner-occupied, residential real estate, Emily Searle-White suggested a research project to delve into the behavior of such a market. As such a market has never existed before and will differ from the known stock and real estate markets, 
+%Emily hoped to model the growth and behavior of such a market and Dan offered to work with her in this research.
+
+In the next few pages, we will present the structure of the overall market we are trying to model, the methods and techniques we used in specific aspects of the model, and our results. We will conclude with open questions and aspects to be explored further in the next iterations of the model.
+%------------------------------------------------
+
+\section{Structure of the Market}
+To begin, we would like to present the overall structure of a transaction, as that forms the basis of the our model.  In broad terms, the model will track the creation and behavior of Home Equity Positions (hereafter referred to as HEPs). These HEPS are created as a portions of the equity in a home and sold to interested investors. These HEPs are later traded on the Secondary Market in the manner of normal stocks. The life cycle of a HEP can be briefly explained as follows:
+
+\begin{enumerate}
+\item{A homeowner triggers the creation of a HEP.}
+\item{The new HEP, purchased for \$10,000, is auctioned to the lowest (in equity percentage) bidder among the investors. The equity percentage is now fixed for the life of the HEP.}
+\item{The investor owning the HEP decides to sell the position and makes the HEP available on the secondary market.}
+\item{The secondary market auction takes place, the HEP is sold to the highest (in dollars) bidder.}
+\item{Repeat steps 3, 4.}
+\item{The homeowner sells the underlying property and the HEP claim is said to mature.}
+\item{The investor(s) is (are) paid the final claim value $C_f = S_f - M_0$ ($S_f$: the final sale price of the home; $M_0$ the initial mortgage amount). We use $M_0$ because the homeowner is reimbursed all principal payments from the sale proceeds before the remainder is divided between the homeowner and the investor.}
+\end{enumerate}
+
+We will explain in detail with an example. Homebuyer A decides to buy a home in San Francisco but asks PRIMARQ for an additional \$10,000 to help with the down payment, in exchange for a percentage stake in the equity of the home. Homebuyer A decides that she is willing to offer 8\% of the equity in her home in exchange for the \$10,000. So, she decides to offer this equity on the Exchange. 
+
+Prospective investors registered with PRIMARQ have access to the Exchange website. There, they see that there is a position available in a home in San Francisco, that Homebuyer A is asking for the fixed \$10,000 and that she is opening the equity position bidding at 8\%. The investors also see some financial information about Homebuyer A, including her credit score, etc. The investors evaluate this position (including the home in question, the neighborhood and city in which is it located, etc) and investors B, C, and D decide to place bids to purchase the HEP.
+
+Following their decisions to place a bid, investor B begins the process. He offers Homeowner A the \$10,000 in exchange for the 8\% equity position, as she originally offered. Investor C, thinking that the home will probably increase considerably in value in the next few years, offers to give Homebuyer A the \$10,000 but for only a 7.5\% position in the equity of the home. Investor D is more hopeful still and offers the \$10,000 for only a 7\% equity stake in Homebuyer A's new home. Investors B and C do not want to bid any lower, and Homebuyer A likes Investor D's offer, so Homebuyer A and Investor D enter into the transaction together. The equity percentage  of 7\% is now fixed for the entire lifetime of the HEP.
+
+Homebuyer (now Homeowner) A and Investor D now own the home as Tenants in Common\footnote{Note: This is different in legal structure than a Joint Tenancy, specifically because Joint Tenancy includes Right of Survivorship, wherein upon the death of Homeowner A, the ownership of the home would pass to Investor D. This is \textit{not} the case in a Tenancy in Common. (US Department of Housing and Urban Development)}, and this arrangement will continue until one of two things happens: either Homeowner A decides to sell the home, or Investor D decides to sell his equity position\footnote{Specifically, the home is put in the name of the Homeowner and a Trust as Tenants In Common, and he beneficiary of that Trust is (are) the investor(s). In this manner, if the investors trade their positions, this does not affect the homeowner's claim to the home or the percentage in the equity split. The beneficiary of the fixed trust simply changes, which prevents the equity split having to be reevaluated with every sale of the HEP on he secondary market. For full details of the legal structure of a PRIMARQ transaction, see www.primarq.com.}. 
+
+As soon as a home equity position has been created in a home, it can be sold and traded as a stock\footnote{We note here that normal equities of a company are all identical, whereas on the Secondary Market in this model, HEPs from the same home are identical but not HEPs from different homes.} on PRIMARQ's Secondary Market. If Investor D decides he wishes to sell his HEP, he can post his asking price on the Exchange for other registered investors to see. The HEP can change hands without any change happenening to the homeowner's claim to the home. The amount of equity assigned to a HEP does not change when the position is sold - the price may fluctuate as its market value changes (depending on the valuation of investors), but the underlying claim to the house remains fixed at the percentage assigned at the time of the HEP's creation.
+
+If the homeowner decides to sell the home, then after all closing costs are paid and the homeowner is reimbursed for all prinicpal mortgage payments, the remaining profit is divided according to the originally decided equity split between the homeowner and whoever owns the HEP at the time, and the HEP position is terminated. If the new owner of the home decides to create a new HEP, then the process begins again.  
+
+We now make a note of a few important rules in these transactions:
+\begin{compactitem}
+\item {More than one HEP can be in place in one home. This means that the homeowner may be on the title of the home with the Trust, and the Trust may have multiple benficiaries.}
+\item The homeowner must always own the majority (51\%) of the equity in the home.
+\end{compactitem}
+
+This is the market that PRIMARQ is on its way to creating. Our job this semester was to try and see how this market might develop, using the research that has already gone in to modeling traditional equity and real estate markets. We broke the above process down and examined it away from the lense of a business model. Instead, we scrutinized each section of the transaction and tried to figure out which areas of mathematics would help us most in determining the behavior of such a theoretical market. 
+
+\section{Our Approach}
+
+We began by reviewing topics in Stochastic Calculus, which is an area frequently used in the analysis of financial markets. In particular, our study of Brownian Motions and other stochastic processes helped us to model the growth of a home's value in relation to the neighborhood around it. 
+
+We also spent a good deal of time discussing Portfolio Theory, which is a branch of financial mathematics that deals with the behavior of risk and return when it comes to different bundles (or portfolios) of assets. As most of the investors in this model will have portfolios of their own, we wanted to make sure we had an understanding of the effects portfolio strategy and analysis can have on investor behavior, in particular the correlations between real estate related assets and the other asset classes . Further information on these topics can be found in Baxter and Rennie's \textit{Financial Calculus: An Introduction to Derivative Pricing} [1996] and also in Hull's \textit{Options, Futures, and Other Derivatives} [2009].
+
+Finally, we reveiwed some literature on Prospect Theory, which is at the intersection of financial mathematics, behavioral economics, and psychology. Prospect Theory seeks to come up with models that fit the anomalies in the decision-making process that investors exhibit, leading to (what was traditionally considered as) irrational behavior. Again, as investors are a key part of the model we sought to build, we thought it vital to have at least a ground level understanding of the current research in investor behavior. We used Kahneman and Tversky's \textit{Prospect Theory: An Analysis of Decision Under Risk} [1979] for our main research on this topic.
+
+
+\section{The Model}
+Several areas of this model proved quite challenging. The modeling of the primary and secondary markets required an in-depth understanding of auctions. In addition to figuring out when and how much investors would bid on HEPs, it was also necessary to have an understanding of the behavior of the underlying neighborhoods in which the homes were located. Finally, if it is clear how a home is appreciating, how would an individual investor (with his or her own risk tolerance, etc.) evaluate that property? In addition, once a HEP is created, it is a financial instrument with an unmarked expiration date, with its own appreciation and depreciation according to the times. Understanding and tracking these aspects were the tasks that required the most attention.
+
+\subsection{Structure and Implementation}
+%\section{The Model}
+%Our model was built up in several layers. The very ground layer was the structure of the neighborhoods in question. We wanted to model specifically five cities(San Francisco, Los Angeles, San Diego, Washington, DC and New York City)\footnote{These cities are based on the decided-upon launch cities for the company PRIMARQ.} and seven active\footnote{As time passes in the model, more neighborhoods become active, depending on the average HEP value in the rest of the city and other factors.} neighborhoods within each of these cities. Within each neighbohood, there were a certain number of HEPs available at the start. The number of homes available grows within the model depending on how each neighborhood is appreciating, along with other factors that might spark investor interest. 
+to do.
+
+\subsection{Challenges}
+
+\subsubsection{Expectation}\label{subsubsec:expectation}
+%\subsection{Expectation}
+%\begin{Dan}
+Let the random variable $T$ be the time at which some HEP expires, i.e., at which the underlying house is sold. Let the random variables $S_T$ and $V$, respectively, be the sale price of the home and the final payout value of the HEP. We thus have $V=p(S_T-M_0)$, where $p$ is the HEP claim percentage. Recall that $M_0$ refers to the initial mortgage amount.
+
+
+The expectation of the present value $\V$ of $V$, given that the HEP expires at some particular time $t$, is just 
+$$
+	\E[\V\mid T=t] = \left(\E[S_t]-M_0\right)e^{-rt},
+$$
+where $r$ is the discount rate. But of course the home could be sold at any time in the future (or never). If $f$ is the probability density function of the distribution of $T$, then we must have
+	\ali{
+	\E[\V] = \intdt{f(t)\left(\E[S_t]-M_0\right)e^{-rt}}.
+	}
+
+In this model, we assume that $T$ is exponentially distributed, with the parameter $\lambda$ derived from census data. The expectation of the home sale price is trickier; the neighborhood appreciation is log-normal, but the value of an individual home depends on the aging constant and a series of discrete price changes as well as this appreciation.
+
+Our solution was to assume that the appreciation $S_T/s_0$ can be well approximated as a random process of the same form as the neighborhood appreciation process; i.e.,
+$$
+S_t\approx s_0\exp\left({\int_{0}^{t}\sigma_*\mathrm{d}W_s + \int_0^t\mu_*\mathrm{d}s}\right)\quad(t\geq0),
+$$
+where $\mu_*$ equals the log-mean of the neighborhood appreciation (after all, a neighborhood is just a bunch of houses) but $\sigma_* ^2$ is larger than the neighborhood log-variance.
+
+Upon the introduction of a new ``neighborhood'' object, the HEP market model generates a large random sample of appreciation ratios $s_1/s_0$ from our home value model and records the log-mean and log-variance of this sample, $\mu_*$ and $\sigma_*^2$. With these numbers and the assumptions mentioned above, we have $\E[S_t]\approx \exp\left({\mu_*t+\sigma_*^2t/2}\right)$ and hence
+\ali{
+	\E[\V] 
+		&=
+	\intdt{f(t)\left(\E[S_t]-M_0\right)e^{-rt}}
+		\\&
+	\approx 	\intdt{\lambda e^{-\lambda t-rt}\left(s_0e^{\mu_*t+\sigma_*^2t/2}-M_0\right)}.
+		}
+Provided that $\mu_*+\sigma_*^2/2-\lambda-r<0$, this converges to
+$$
+\frac{\lambda s_0}{-\mu_*-\sigma_*^2/2+\lambda+r}+\frac{\lambda M_0}{-\lambda-r}.
+$$
+
+To handle the divergent case, we regard the discount rate $r$ as the best available risk-adjusted return in the larger financial universe. If the inequality above does not hold, then in fact there is a better return available -- namely, on investment in real estate in this neighborhood. We adjust the parameter $r$ accordingly.
+%\end{Dan}
+
+\subsubsection{Evolution of Home Prices}
+%\subsection{Evolution of Home Prices}%\begin{Dan}
+We assume that the appreciation $A=m_1/m_0$ of the median home price $m_t$ in any neighborhood in one year is log-normally distributed, with some log-mean $\mu$ and log-variance $\sigma^2$.
+
+However, the evolution of an individual property's price might diverge wildly from the evolution of median prices in the neighborhood. In the absence of any previous literature on the topic, we modeled the price evolution process as the interaction of three distinct, simpler processes: the neighborhood appreciation, a constant depreciation rate, and discrete jumps in price. The first of these we have already discussed.
+
+The depreciation rate reflects general wear and tear as the home ages. We set a depreciation constant $\alpha$ and use the product $s_1=(1-\alpha)s_0$ to model this process.
+
+But the homeowner will not sit idly by while the home falls to pieces. Major repairs and home improvement projects such as new bathrooms or roofs are all modeled by discrete price jumps. Fires, floods, and other disasters are also considered here.
+
+The American Housing Survey\footnote{US Census Bureau, American Housing Survey} data includes the proportion, $p$, of respondents who undertook at least one home improvement project in the two years since the previous survey. Assuming that the number of such events in a particular house, $N$, is $\mathrm{Pois}(\lambda)$, we can conclude that
+$$
+\P\left(N\geq1\right)=p\implies \lambda = -\frac{1}{2}\log\left(1-p\right)\frac{_\text{\tiny{events}}}{^\text{\tiny{year}}}.
+$$
+
+An initial challenge in this research was finding an appropriate mean value for these discrete price jumps. In our earliest tests, the median of the home appreciation ratios generated by the model would never match the neighborhood appreciation rate. But of course the price of every house in the neighborhood is imagined to evolve according to this process, and so they must match.
+
+If $J=\{J_1, J_2, \dots, J_N\}$ are the values of the discrete jumps that occur in one year and $A$ is the neighborhood appreciation ratio in that year, then our home price process is given by
+$$
+\frac{S_1}{ s_0}=\frac{A(1-\alpha)(1+\sum_{k=1}^NJ_k)s_0}{s_0}.
+$$
+We then use this formula to find the correct expectation for discrete jump values. If $A$ and $S_1/A$ are assumed to be independent, then we have
+$$
+\E\left[\frac{S_1}{ s_0}\right]=\E\left[\frac{A(1-\alpha)(1+\sum_{k=1}^N)s_0}{s_0}\right] = \E[A](1-\alpha)\left(1+\E\left[\sum_{k=1}^NJ_k\right]\right).
+ $$ 
+But $\E[S_1/s_0]=\E[A]$, and this equation reduces to
+$$
+\E\left[\sum_{k=1}^NJ_k\right]=\frac{1}{1-\alpha}-1.
+$$
+We model $J$ as an I.I.D. normal random sample, with sample mean \newcommand{\Jbar}{\overline{J}}$\Jbar$, and we have
+\ali{
+\E\left[\sum_{k=1}^NJ_k\right]&=\E\left[N\Jbar\right]
+\\&=\E\left[N\right]\E\left[\Jbar\right]
+\\&=\lambda\E\left[\Jbar\right]
+}
+The correct expectation for discrete jump values is therefore $\frac{\alpha}{\lambda(1-\alpha)}$.
+
+%egraphics[scale=.39]{sigmaWmuTcopy.pdf}
+
+\hilight{Some of the assumptions mentioned here may be problematic; this may be an area for further refinement.}\\
+
+%\textbf{Example}\\
+
+\begin{figure}
+
+\includegraphics[scale=.35]{GoldSimScreenshot3.png}
+\caption{Basic Neighborhood Appreciation Model in Goldsim\copyright}
+\end{figure}
+
+%The above picture shows how we visualized the process of a home valuation originally in the GoldSim\copyright\footnote{Copyright 2013 GoldSim Technology Group.}  model. 
+
+%\includegraphics[scale=.39]{Home.pdf}
+
+%\end{Dan}
+\subsubsection{Investor Valuation}
+Financial instrument pricing theory is a well-researched field, but results often contradict one another and investors often seem to ignore the theory altogether. Generation of investor valuations for each HEP was therefore one of the more challenging aspects of this project.
+
+We began by considering the expectation of the present value of the payout of a HEP at the time of its expiration, as discussed in \ref{subsubsec:expectation}. While useful, this does not reflect investor attitudes about risk. We therefore turned to Prospect Theory as a source of concrete valuations.
+
+Prospect Theory suggests that human perceptions of probability and of the value of wealth outcomes are somewhat skewed. In particular, if a risky prospect has value $x$ with probability $p$ and value $y$ with probability $(1-p)$, then an individual investor will consider the prospect to be worth
+\ali{
+u=w(p)v(x)+w(1-p)v(y),
+}
+where $v$ and $w$ are weighting functions. Gonzalez and Wu discuss the family of probability weighting functions given by
+$$
+w(p) = \frac{p^\beta}{\left(p^\beta+(1-p)^\beta\right)^{1/\beta}}\quad(0<\beta\leq1);
+$$
+we include their chart here. We used this family of functions for each investor's $w$, with uniformly distributed parameters $\beta$.
+
+\begin{figure}
+\centering
+\includegraphics[width=.65\linewidth]{WeightingFunction.pdf}
+\caption{Weighting Function}
+\end{figure}
+
+Each investor's $v$ function has the form 
+$$v(x)=\begin{cases}
+\gamma_1\log(\frac{x}{\gamma_1}+1)&\text{if }x\geq 0\\
+-\gamma_1\gamma_2\log(\frac{-x}{\gamma_1}+1)&\text{if }x< 0.
+\end{cases}
+$$
+The parameter $\gamma_1$  measures the investor's risk tolerance; as $\gamma_1\to\infty$, $v(x)$ approaches the line with slope 1. Prospect theory also suggests that losses hurt more than gains feel good, and the parameter $\gamma_2$ measures this effect.\
+
+\begin{figure}[H]
+\caption{Prospect Theory?}
+\centering
+\includegraphics[scale=.39]{FlipFlop.pdf}
+\end{figure}
+
+We use these functions to compute each investor's valuation on a HEP, but we must first understand the distribution of $\V$, the discounted eventual payout. For each neighborhood object, our HEP market model generates a (realization of a) large random sample of pairs $(T,S_T/s_0)$ from our home price evolution model, where $T$ is the exponentially distributed waiting time until the home is sold and $S_T$ is the final sale price.
+
+The appreciation $S_{t_\beta}/s_{t_\alpha}$ after any interval of length $t_\beta-t_\alpha$ is identically distributed for all homes that share a neighborhood. We therefore record the complete random sample discussed in the preceding paragraph and use it each time we need to approximate the cumulative distribution function of $\V$ for some HEP with claim percentage $p$. The value of the underlying real property changes with each timestep in the model, but if $s_{\alpha}$ is the value at time $t_\alpha$ and $(t,s_t/s_0)$ is a datum from the random sample, then 
+$$
+v_\mathrm{now} = p\left(\frac{s_t}{s_0}s_{\alpha}-M_0\right)
+$$
+is a realization of $\V$.
+
+After constructing the approximate CDF $F(x)=\P(\V<x)$, we obtain each investor's valuation on the HEP. In the original cumulative prospect theory paper, Tversky and Kahneman give this as
+$$
+U=\int_{-\infty}^0 v(x)\left(\frac{d}{dx}w(F(x))\right)\,dx-\int_0^{+\infty} v(x)\left(\frac{d}{dx}w(1-F(x)\right)\,dx.
+$$
+Our model is limited to a discrete approximation of $F$, so we employ the finite Riemann sum 
+\ali{
+U&=\sum_{k=1}^{m} v(F_{.01k})\left(w\left(.01k\right)-w\left(.01k-.01\right)\right)\\&\phantom{=}-\sum_{k=m+1}^{100} v(F_{.01k})\left(w\left(1-.01k\right)-w\left(1.01-.01k\right)\right),
+}
+where $F_{.01k}$ is the $k$th percentile of $F$ and $m\%=F(0)$.
+
+Later iterations of this market model will employ additional techniques for generating investor valuations, but the process described here has already yielded interesting results.
+
+
+\subsubsection{Auctions: Primary and Secondary Markets}
+Our algorithm simulates home equity position auctions in the following manner.
+
+We gather from each investor object a valuation on the real property underlying the HEP--or rather, on a hypothetical 100\% claim on the equity of that property. The investor's bid is then proportional to the HEP claim percentage in the case of secondary market auctions, and is given by $(\$10,000/\mathrm{Valuation})$ in primary auctions. 
+
+A "bid" in this program and a bid on the Primarq
+ marketplace are not quite the same entity.
+ Here, the variable \verb+bid.value+ is the best that an investor
+ would be willing to bid; she will not actually bid
+ so much unless forced up in a "bidding war" with
+ another investor, and then only if she has the necessary cash at hand.
+
+ The \verb+winner+ and \verb+secondbid+ attributes of an
+ auction instance track the two best bids in the
+ above sense. After creating a bid for each investor, \verb+winner.value+
+ is adjusted to be only slightly better than \verb+secondbid.value+.
+Our algorithm is an abstraction of a day's bidding, during which each investor may have placed several actual bids or even none.
+
+ What we are technically modeling is therefore an iterated
+ second-price sealed-bid auction, or iterated Vickrey auction. In both Vickrey auctions and  the more familiar English auctions, the price paid is the second-highest valuation. The dominant strategy is identical in both types of auction as well: bid your full valuation. 
+ 
+ The Vickrey auction's sealed bids usually prevent the mechanism of price discovery, by which bidders' valuations influence one another. This effect is important in English auctions (the actual auction type in place in the HEP market), so we incorporate it by iterating the Vickrey auction, opening the bids at the end of each iteration. To our knowledge, this is the first paper to investigate iterated Vickrey auctions.
+
+The choice of the iterated Vickrey auction for this model was motivated by simplicity and computational efficiency; we did not wish to model each investor's bidding frequency, attention span, time zone, or other such trivialities. However, this choice introduced a new challenge: with several auctions potentially running in parallel and resolved simultaneously, the algorithm must ensure  that no bidder wins more auctions than she can afford.
+
+The present implementation handles this recursively. We simulate one Vickrey iteration for each ongoing auction and record each bidder's winning bids. These are then sorted in descending order of preference; i.e., by how well the investor likes the price she will end up paying. From the beginning of the list, each auction that an investor has won and can afford is considered finished for the day.
+
+Upon reaching an auction in the list that the investor has won but cannot afford (because she spent her money on the auctions she liked better, earlier in the list), it is assumed that the investor never actually placed that bid. The remainder of the list is sent back to be run again. This time, everyone's available bidding cash will have been adjusted down to reflect the auctions that they definitely won.
+%Within each neighborhood, the given homes each have a certain value, determined by several factors. These factors include the home's depreciation due to age, the neighborhood appreciation, and the value added or subtracted by home improvement projects and disasters, respectively. The picture below depicts one neighborhood in Los Angeles: Pacific Palisades. Here, neighborhood-specific data is used to calculate the average home value, neighborhood appreciation, etc. Every home in each neighborhood will have is value calculated in such a way.
+
+
+
+
+%------------------------------------------------
+
+
+
+%------------------------------------------------
+
+\section{Results}
+Here we see the results of the auction in the primary market. The simulation was set up for one home in one neighborhood, with ten investors ( where the individual risk tolerance is a fixed function of the portfolio wealth of that investor) on the market. Here we have an example of the bidding process on a new HEP in the Primary Market:
+
+\begin{figure}[h!]
+  \centering
+      \includegraphics[scale=.7]{PrimaryAuction.png}
+  \caption{The investors are numbered on the X-Axis. Their percentage bids are represented in columns. The HEP in question was sold after two days, so two bids are shown (one for each day) from each investor.}
+\end{figure}
+
+The percentage claim on the equity of the home is fixed at the time of creation of a HEP. However, through the appreciation of the neighborhood and hence the home, as well as through investor interest, the HEP's value can grow independently of the home. Further, even though the claim value is a fixed percentage, say at 10\%, even at the time of its creation, the HEP's value (\$ 10,000 at the start) in relation to the overall equity in the home may be far more (or less) than that 10\%. We watched this relationship through one hundred realizations of one HEP being sold once after ten years.
+
+In addition, for another hundred realizations (monitored every thirty days), we monitored the relationship between the expectation of the HEP in a home and the home's value over that time. The resulting data indicates an important aspect of the HEP: the HEP is a leveraged financial product. Because there is always a mortgage on the home in question, the appreciation on the home results in extreme appreciation on the equity in proportion. The chart below shows the evolution over five years of the ratio between a HEP's expectation and the current home value. Both are
+\begin{figure}
+\centering
+\includegraphics[scale=.55]{HepExpHVal.png}
+\caption{Expectation of HEPS of 17 Homes in Relation to the Overall Home Value}
+\end{figure}
+%    \begin{tabular}{|lccc|}
+%    \hline
+%    HEP & Percentage Claim & Original P-E Ratio & New P-E Ratio \\ \hline
+%    HEP 1 & 11\% & 8.95 \% & 10.31\% \\
+%    HEP 2 & 16.9\% & 29.37\% & 30.93\%\\
+%    HEP 3 & 19.1\% & 39.4\% & 45.1\% \\
+%    HEP 4 & 8.2\% & 7.22\% & 9.38\% \\
+%    HEP 5 & 8.5\% & 59.05\% & 54.92\% \\
+%    HEP 6 & 19.7\% & 53.42\% & 24.93\% \\
+%    HEP 7 & 11.6\% & 10.28\% & 6.75\% \\ \hline
+%    \end{tabular}
+%\end{table}
+
+
+%------------------------------------------------
+
+\section{Discussion: Next Steps}
+There are several aspects of the model that, as we progressed, found were too complex to tackle completely in one semester. Many of these things could either be simulated randomly for the first iteration of the model, or could be simply put on hold until a later version. 
+% what kinds of results can we look at in the future? Parameter sets, bubbles, etc. 
+
+\subsection{Investor Behavior}
+We hoped to use both Portfolio Theory and Prospect Theory to have a better understanding of investor behavior. However, as time grew to a close in the semester, we decided that modeling the auction process in the primary market and the trading in the secondary market was more important than having the complex investor profiles that we originally had planned. The model is structured in such a way that given more time, it will be easy to insert a more complex investor profile. As it stands, events like the timing of an investor's bid in the primary market are triggered by values chosen at random from a distribution. This and other similar situations in the model can be more accurately triggered if more of the information from Prospect Theory was built in.
+
+In addition, given more time and communication with PRIMARQ, a more accurate idea of the registered investors portfolios, and thus a better view of how much they would be likely to invest in the HEP market. 
+
+\subsection{Neighborhood Behavior}
+Emily spent a great deal of time during her internship starting to model the process of neighborhood appreciation. As investors are most interested in investing in areas they believe will appreciate in the future, coming up with a predictive index for neighborhood appreciation is very valuable. Through the course of her time with PRIMARQ, she researched and discovered upwards of twenty different factors that influence the appreciation of a neighborhood. However, at the end of her internship, Emily was not finished with this index. More research is needed to complete the task, and the time required for that project wasn't available in addition to the time needed for the task at hand. So, as in the section above, Dan and Emily researched which kinds of distributions are used that most accurately reflect neighborhood appreciation and used that in the model for now. Given the time to finish this index, the research behind it would certainly be a useful aspect to add into the model, and as with the investor behavior, there is room for it to be encorporated.
+
+
+%----------------------------------------------------------------------------------------
+%	REFERENCE LIST
+%----------------------------------------------------------------------------------------
+\newpage
+
+\section{Reviewed Works}
+%{thebibliography}{99} % Bibliography - this is intentionally simple in this template
+\begin{itemize}
+\item{BAXTER M. / RENNIE A. Financial Calculus: An Introduction to Derivative Pricing. Cambridge, UK: Cambridge University Press. 1996.}
+\item{GONZALEZ, R. / WU, G. "On the Shape of the Probability Weighting Function". Cognitive Psychology, 38(1999), pp. 129-166. }
+\item{HULL, J. Options, Futures, and Other Derivatives. Upper Saddle River, NJ: Pearson Education, Inc. 2009.}
+\item{KAHNEMAN, D. /  TVERSKY A. Prospect Theory: An Analysis of Decision Under Risk. Econometrica: Journal of the Econometric Society (1979). pp. 263-291.}
+\item{MIKLOS, R. Prospect Theory and its Financial Applications. Universiteit van Amsterdam. 2011.}
+\item{SHREVE, S. Stochastic Calculus for Finance II :Continuous-Time Models. Pittsburgh, PA. Springer. 2008.}
+\item{United States Census Bureau. "AHS 2011 National Summary Report and Tables". \emph{American Housing Survey}. 2011 }
+\item{VICKREY, W. Counterspeculation, Auctions, and Competitive Sealed Tenders. The Journal of Finance 16(1961). Columbia University.}
+\end{itemize}
+
+%\bibitem[Figueredo and Wolf, 2009]{Figueredo:2009dg}
+%Figueredo, A.~J. and Wolf, P. S.~A. (2009).
+%\newblock Assortative pairing and life history strategy - a cross-cultural
+%  study.
+%\newblock {\em Human Nature}, 20:317--330.
+ 
+%\end{thebibliography}
+
+%----------------------------------------------------------------------------------------
+
+%\end{multicols}
+\newpage
+
+\section{Appendix}
+\subsection{Notes About Software}
+The choice of software was a complicated one for this project. For several reasons, the program GoldSim\copyright\ was optimal. Not only is the software designed for large model implementations (specifically using Monte Carlo simulations for things like Risk Analysis and Decision Analysis), but also Emily had had some experience with it over the summer. In addition, GoldSim\copyright\ is a very visual environment that can display results and show the model design in explanatory ways, and link dynamically with other programs for data (such as Excel).  Finally, there were several pieces of data that were available to Emily and Dan only via this software (from employees at PRIMARQ), and so the decision was made to use GoldSim\copyright\ as the primary software.
+
+However, several difficulties arose. The first was that the modeling of HEP behavior in the market (tracking the speed of growth in value, tracking which owners own the HEP at what time, and for how long) is something that falls very easily into the object-oriented programming paradigm, which is not supported by GoldSim\copyright. Dan had a lot of experience in Python, Emily in Java, and working to overcome this block in GoldSim\copyright\ was often very discouraging.  In addition, the amount of calculations that GoldSim\copyright\ performs during the Monte Carlo simulation process proved to be just a bit too much data for our laptops to handle, at least at the level of complexity that we wanted it to work.
+
+In the end, we decided it was best to plan our model conceptually in GoldSim\copyright\ (as it provides a nice, visual overview, with a clear picture of what elements depend on what in the model). We used that software as our drawing board, but build the bulk of the model in Python, and then used GoldSim\copyright 's many features to help display our results from the simulations.
+
+For the next iteration of this project, we think use of GoldSim certainly could be helpful, but without the computer power necessary, we think the same issues would arise.
+
+\subsection{Python Code}
+%\input{HEPs.py.tex}
+
+\end{document}

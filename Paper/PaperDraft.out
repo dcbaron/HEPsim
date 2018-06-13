@@ -1,0 +1,18 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Structure of the Market}{}% 2
+\BOOKMARK [1][-]{section.3}{Our Approach}{}% 3
+\BOOKMARK [1][-]{section.4}{The Model}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{Structure and Implementation}{section.4}% 5
+\BOOKMARK [2][-]{subsection.4.2}{Challenges}{section.4}% 6
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Expectation}{subsection.4.2}% 7
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Evolution of Home Prices}{subsection.4.2}% 8
+\BOOKMARK [3][-]{subsubsection.4.2.3}{Investor Valuation}{subsection.4.2}% 9
+\BOOKMARK [3][-]{subsubsection.4.2.4}{Auctions: Primary and Secondary Markets}{subsection.4.2}% 10
+\BOOKMARK [1][-]{section.5}{Results}{}% 11
+\BOOKMARK [1][-]{section.6}{Discussion: Next Steps}{}% 12
+\BOOKMARK [2][-]{subsection.6.1}{Investor Behavior}{section.6}% 13
+\BOOKMARK [2][-]{subsection.6.2}{Neighborhood Behavior}{section.6}% 14
+\BOOKMARK [1][-]{section.7}{Reviewed Works}{}% 15
+\BOOKMARK [1][-]{section.8}{Appendix}{}% 16
+\BOOKMARK [2][-]{subsection.8.1}{Notes About Software}{section.8}% 17
+\BOOKMARK [2][-]{subsection.8.2}{Python Code}{section.8}% 18
